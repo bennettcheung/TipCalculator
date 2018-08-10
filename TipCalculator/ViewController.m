@@ -37,6 +37,9 @@
     self.tipAmountLabel.text =  [NSString stringWithFormat:@"$ %.2f", tip];
     
 }
+- (IBAction)adjustTipPercentage:(UISlider *)sender {
+    self.tipPercentageTextField.text = [NSString stringWithFormat:@"%.2f", sender.value];
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -50,7 +53,7 @@
     NSCharacterSet *allowedCharacters = [NSCharacterSet characterSetWithCharactersInString:@".0123456789"];
     
     if([string rangeOfCharacterFromSet:allowedCharacters.invertedSet].location == NSNotFound){
-        
+        [self calculateTip:self.calculateTipButton];
         return YES;
         
     }
@@ -58,4 +61,5 @@
     return NO;
     
 }
+
 @end
